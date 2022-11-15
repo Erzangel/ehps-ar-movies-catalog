@@ -21,6 +21,30 @@ The AR Movie Catalog is meant to provide a platform for both consumers and creat
 
 > Tip: When using an emulator, double-tab R to refresh the app and display changes
 
+## Windows & Android target Installation details
+
+Instructions taken from [here](https://reactnative.dev/docs/environment-setup)
+
+1. Install [Chocolatey](https://chocolatey.org/install) following the steps for PowerShell (right-click the Windows icon on the bottom left, and click on Windows PowerShell, and type instructions there)
+2. Install node.js and OpenJDK with Chocolatey: `choco install -y nodejs-lts openjdk11`
+3. Install [Android Studio](https://developer.android.com/studio/index.html). During installation, make sure that `Android SDK`, `Android SDK Platform` and `Android Virtual Device` are selected
+4. In Android Studio main page, go to More Actions -> SDK Manager -> Install Android Studio 12 (S) SDK
+  - Select the "SDK Platforms" tab from within the SDK Manager, look for and expand the Android 12 (S) entry, make sure the following is checked: `Android SDK Platform 31`, and `Intel x86 Atom_64 System Image` or `Google APIs Intel x86 Atom System Image`;
+  - Next, select the "SDK Tools" tab and check the box next to "Show Package Details" here as well. Look for and expand the Android SDK Build-Tools entry, then make sure that 31.0.0 is selected.
+5. Configure the ANDROID_HOME environment variable:
+  - Open the Windows Control Panel.
+  - Click on User Accounts, then click User Accounts again
+  - Click on Change my environment variables
+  - Click on New... to create a new ANDROID_HOME user variable that points to the path to your Android SDK. It must look like `...\AppData\Local\Android\Sdk`
+6. Also set the platform-tools to path:
+  - Open the Windows Control Panel.
+  - Click on User Accounts, then click User Accounts again
+  - Click on Change my environment variables
+  - Select the Path variable.
+  - Click Edit.
+  - Click New and add the path to platform-tools to the list. Is is `...\AppData\Local\Android\Sdk\platform-tools`
+7. Congrats! Now follow the steps above to get started
+
 ## Project contributors
 
 | Name                 | Contact                         | Role                          | Active             |
