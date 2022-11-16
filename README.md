@@ -13,7 +13,11 @@ The AR Movie Catalog is meant to provide a platform for both consumers and creat
 
 1. Clone this repository using either GitHub Desktop or the CLI: `git clone git@github.com:Erzangel/ece-horror-picture-show.git`;
 2. Install [React-native](https://reactnative.dev/docs/environment-setup) on your platform, without running the init command;
-3. Open an Android Emulator as described in the tutorial above, or use a physical device;
+3. Open an Android Emulator as described in the tutorial above (alternatively, use a physical device):
+  - Open a the `android/` folder of this project in Android Studio
+  - Click on a button on the top right spelling `Device Manager` (the icon is a phone with the Android logo on it)
+  - Click on the Play button next to a phone if there is one in the list, otherwise create a virtual device
+  - Once the phone is started, move on
 4. Open Metro in a terminal with `npx react-native start` and keep it open;
 5. In another terminal tab, run `npx react-native run-android`;
 6. Preview the app in the emulator/physical device;
