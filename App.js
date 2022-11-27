@@ -6,9 +6,12 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useCallback} from 'react';
 import type {Node} from 'react';
 import {
+  Alert,
+  Button,
+  Linking,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -25,6 +28,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+
 
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
  * LTI update could not be added via codemod */
@@ -54,6 +58,26 @@ const Section = ({children, title}): Node => {
   );
 };
 
+/* Button to open other apps or links 
+ * Accepts the URL as a parameter
+ * Source: https://reactnative.dev/docs/linking */
+const OpenURLButton = ({ url, children }) => {
+  const handlePress = useCallback(async () => {
+    // Checking if the link is supported for links with custom URL scheme.
+    const supported = await Linking.canOpenURL(url);
+
+    if (supported) {
+      // Opening the link with some app, if the URL scheme is "http" the web link should be opened
+      // by some browser in the mobile
+      await Linking.openURL(url);
+    } else {
+      Alert.alert(`Don't know how to open this URL: ${url}`);
+    }
+  }, [url]);
+
+  return <Button title={children} onPress={handlePress} />;
+};
+
 const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -78,6 +102,17 @@ const App: () => Node = () => {
           <Section title="Step One">
             Edit <Text style={styles.highlight}>App.js</Text> to change this
             screen and then come back to see your edits.
+          </Section>
+          <Section title="Open Unity App">
+            <Button
+              /*onPress={}*/
+              title="Open Unity"
+              color="#159099"
+              accessibilityLabel="Open the Unity AR Movie player"
+            />
+          </Section>
+          <Section title="Open Unity App">
+            <OpenURLButton url={"https://google.com"}>Open Supported URL</OpenURLButton>
           </Section>
           <Section title="See Your Changes">
             <ReloadInstructions />
