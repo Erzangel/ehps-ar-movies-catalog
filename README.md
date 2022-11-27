@@ -22,10 +22,10 @@ The AR Movie Catalog is meant to provide a platform for both consumers and creat
 ### Run the project
 
 1. Open an Android Emulator with Android Studio (alternatively, use a physical device):
-  - Open the `android/` folder of this project in Android Studio
-  - Click on a button on the top right spelling `Device Manager` (the icon is a phone with the Android logo on it)
-  - Click on the Play button next to a phone if there is one in the list, otherwise create a virtual device
-  - Once the phone is started, move on
+  1. Open the `android/` folder of this project in Android Studio
+  2. Click on a button on the top right spelling `Device Manager` (the icon is a phone with the Android logo on it)
+  3. Click on the Play button next to a phone if there is one in the list, otherwise create a virtual device
+  4. Once the phone is started, move on
 2. Open **two** terminal windows (using Git Bash or PowerShell on Windows) and navigate to the project folder: `cd {path where you cloned this project}`
 3. Open Metro in the first terminal with `npx react-native start` and keep it open;
 4. In the other terminal tab, run `npx react-native run-android`;
