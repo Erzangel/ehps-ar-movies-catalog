@@ -11,23 +11,32 @@ The AR Movie Catalog is meant to provide a platform for both consumers and creat
 
 ## How to use
 
-1. Clone this repository using either GitHub Desktop or the CLI: `git clone git@github.com:Erzangel/ece-horror-picture-show.git`;
-2. Install [React-native](https://reactnative.dev/docs/environment-setup) on your platform, without running the init command;
-3. Open an Android Emulator as described in the tutorial above (alternatively, use a physical device):
-  - Open a the `android/` folder of this project in Android Studio
+### First runs
+
+1. Install prerequisites [for Windows & Android target as explained here](#windows-and-android-target-installation-details), or [go to the official documentation for other platforms](https://reactnative.dev/docs/environment-setup);
+2. Clone this repository using either [GitHub Desktop](https://desktop.github.com/) or Git CLI: `git clone git@github.com:Erzangel/ece-horror-picture-show.git`;
+3. (Optional) If using Windows, you may install [Git Bash](https://git-scm.com/downloads) for a nicer terminal. Otherwise, use Powershell (right-click on the Windows icon on the bottom-left, and choose `Windows PowerShell`).
+4. Using one of the two terminals described above, navigate to the project folder: `cd {path where you cloned this project}`;
+5. Run `npm install`.
+
+### Run the project
+
+1. Open an Android Emulator with Android Studio (alternatively, use a physical device):
+  - Open the `android/` folder of this project in Android Studio
   - Click on a button on the top right spelling `Device Manager` (the icon is a phone with the Android logo on it)
   - Click on the Play button next to a phone if there is one in the list, otherwise create a virtual device
   - Once the phone is started, move on
-4. Open Metro in a terminal with `npx react-native start` and keep it open;
-5. In another terminal tab, run `npx react-native run-android`;
-6. Preview the app in the emulator/physical device;
-7. Open an IDE such as VSCode and edit the `.js` React files as needed.
+2. Open **two** terminal windows (using Git Bash or PowerShell on Windows) and navigate to the project folder: `cd {path where you cloned this project}`
+3. Open Metro in the first terminal with `npx react-native start` and keep it open;
+4. In the other terminal tab, run `npx react-native run-android`;
+5. Preview the app in the emulator/physical device;
+6. Open an IDE such as VSCode and edit the `.js` React files as needed.
 
 > Tip: When using an emulator, double-tab R to refresh the app and display changes
 
-## Windows & Android target Installation details
+## Windows and Android target Installation details
 
-Instructions taken from [here](https://reactnative.dev/docs/environment-setup)
+Instructions derived from [here](https://reactnative.dev/docs/environment-setup) with Windows & Android selected. Refer to this link if you encounter issues.
 
 1. Install [Chocolatey](https://chocolatey.org/install) following the steps for PowerShell (right-click the Windows icon on the bottom left, and click on Windows PowerShell, and type instructions there)
 2. Install node.js and OpenJDK with Chocolatey: `choco install -y nodejs-lts openjdk11`
