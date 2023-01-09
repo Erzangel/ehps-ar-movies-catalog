@@ -8,6 +8,7 @@
 
 import React, {useCallback} from 'react';
 import type {Node} from 'react';
+import Unity from './Unity'
 import {
   Alert,
   Button,
@@ -119,6 +120,9 @@ const App: () => Node = () => {
           </Section>
           <Section title="Debug">
             <DebugInstructions />
+          </Section>
+          <Section title="Unity">
+            <Unity />
           </Section>
           <Section title="Learn More">
             Read the docs to discover what to do next:
