@@ -3,8 +3,7 @@ import { Text, View } from "react-native";
 import { StyleSheet } from "react-native";
 
 const Home = () => {
-    return (
-        
+    return (      
 <View>
 <Text style = {styles.welcome}> Mirage</Text>
 <StatusBar style = "auto"/>
