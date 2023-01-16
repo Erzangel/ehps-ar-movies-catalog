@@ -1,6 +1,8 @@
 # Errors encountered during development
 
-This file contains some of the errors we went through during development, and our fixes for them
+This file contains some of the errors we went through during development, and our fixes for them.
+
+Those errors are listed in chronological order.
 
 ## AndroidSdk version error between React Native and Unity integration
 
@@ -86,9 +88,19 @@ I then downloaded the corresponding NDK in Android Studio. I then edited the `..
 
 However, this did not solve the issue.
 
+The fix:
+
 [This comment from the same thread](https://github.com/juicycleff/flutter-unity-view-widget/issues/440#issuecomment-900176811) instead indicates it is possible to give a path for NDK in the `local.properties` file.
 
-I did this, modifying the `` file with the following path: ``
+I did this, modifying the `[project root]/android/local.properties` file with the following path:
+
+```
+# Location of the NDK to be used by Android Studio (possibly?)
+# Required when using Unity with react-native-unity
+# Can come from an Unity editor, or from an NDK installation from Android Studio SDK Manager
+# Version used was 19.0.5232133
+ndk.dir=D:\\Unity\\Unity Editor\\2020.3.23f1\\Editor\\Data\\PlaybackEngines\\AndroidPlayer\\NDK
+```
 
 ## Unknown error with permissions and out folder
 
@@ -100,4 +112,47 @@ The error:
 * What went wrong:
 Execution failed for task ':app:mergeDebugNativeLibs'.
 > Unable to delete directory 'D:\GitHub Cloning Folder\ehps-ar-movies-catalog\android\app\build\intermediates\merged_native_libs\debug\out\lib' after 10 attempts
+```
+
+Another error at the same point:
+
+```
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:packageDebug'.
+> java.io.IOException: Unable to delete directory 'D:\GitHub Cloning Folder\ehps-ar-movies-catalog\android\app\build\intermediates\incremental\packageDebug\tmp'
+    Failed to delete some children. This might happen because a process has files open or has its working directory set in the target directory.
+    - D:\GitHub Cloning Folder\ehps-ar-movies-catalog\android\app\build\intermediates\incremental\packageDebug\tmp\debug\zip-cache
+```
+
+Attempts:
+
+Unsure if this worked properly, but giving full control over the cloned folder may have allowed this to work. This was eventually fixed
+
+## "Function components cannot have string refs" after successful build in React
+
+This was caused by a TypeScript error when writing code, [as referenced by my answer to this issue in the react-native-unity repo](https://github.com/azesmway/react-native-unity/issues/58).
+
+Simply remove `<UnityView>` from your `useRef()`.
+
+## Error after rebuilding the Unity project
+
+The error:
+
+```
+BUILD FAILED in 45s
+
+error Failed to install the app. Make sure you have the Android development environment set up: https://reactnative.dev/docs/environment-setup.
+Error: Command failed: gradlew.bat app:installDebug -PreactNativeDevServerPort=8081
+D:\GitHub Cloning Folder\ehps-ar-movies-catalog\android\app\src\debug\AndroidManifest.xml:35:9-55:20 Error:
+        android:exported needs to be explicitly specified for element <activity#com.unity3d.player.UnityPlayerActivity>. Apps targeting Android 12 and higher are required to specify an explicit value for `android:exported` when the corresponding component has an intent filter defined. See https://developer.android.com/guide/topics/manifest/activity-element#exported for details.
+
+FAILURE: Build completed with 2 failures.
+
+1: Task failed with an exception.
+-----------
+* What went wrong:
+Execution failed for task ':app:processDebugMainManifest'.
+> Manifest merger failed with multiple errors, see logs
 ```

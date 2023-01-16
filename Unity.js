@@ -5,7 +5,7 @@ import { View } from 'react-native';
 
 
 const Unity = () => {
-  const unityRef = useRef<UnityView>(null);
+  const unityRef = useRef(null);
 
   useEffect(() => {
     if (unityRef?.current) {
