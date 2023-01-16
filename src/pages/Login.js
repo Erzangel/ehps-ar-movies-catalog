@@ -53,8 +53,7 @@ const LoginScreen = (props) => {
   <Text style={{ color: 'black', textDecorationLine: underline ? 'underline' : 'none' }}>inscrivez-vous.</Text>
 </TouchableOpacity>
 </View>
-
-    </View>
+</View>
   );
 };
 

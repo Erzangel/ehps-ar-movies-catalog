@@ -1,3 +1,4 @@
+
 import { StatusBar } from "react-native";
 import { Text, View } from "react-native";
 import { StyleSheet } from "react-native";
@@ -20,6 +21,8 @@ const Home = () => {
     return () => backHandler.remove();
   }, []);
 */
+
+
   return (
     <View style={styles.container}>
       <Text style={styles.welcome}>Mirage</Text>
