@@ -18,7 +18,7 @@ This document contains everything we noted about integrating Unity with our Reac
 1. Open the Unity project with Unity;
 2. Go to Build & Run, check the `Export Project` tick, and export it;
 3. Wait for export;
-4. When finished, modify the `android/local.properties` file and add a reference to the NDK on your computer. Example: `ndk.dir=D\:/Unity/Unity Editor/2020.3.23f1/Editor/Data/PlaybackEngines/AndroidPlayer/NDK`;
+4. When finished, modify the `unityLibrary/src/main/AndroidManifest.xml` file and delete the `<intent-filter>...</intent-filter>` tag;
 5. Move the exported folder to `[project root]/unity/builds`.
 
 ## Modifications to the settings of the React Native app itself

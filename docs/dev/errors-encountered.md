@@ -156,3 +156,29 @@ FAILURE: Build completed with 2 failures.
 Execution failed for task ':app:processDebugMainManifest'.
 > Manifest merger failed with multiple errors, see logs
 ```
+
+This occurs whenever the `unityLibrary/src/main/AndroidManifest.xml` file was not modified after an export. The `<intent-filter>...</intent-filter>` tag must be removed.
+
+## Unity error "Failed to load libmain.so"
+
+The error, in a React Native pop-up:
+
+```
+Failure to initialize!
+
+Your hardware does not support this application.
+
+Failed to load 'libmain.so'
+
+java.lang.UnsatisfiedLinkError: dlopen failed: library "libmain.so" not found
+
+Press OK to quit.
+```
+
+This usually happens when trying to launch Unity in an emulator. Running the app on a real device often works.
+
+A workaround taken from [this Unity forums thread](https://forum.unity.com/threads/app-not-working-on-some-devices-failed-to-load-libmain-so.1031137/):
+
+```
+Actually adding android:extractNativeLibs="true" to the <application> element in AndroidManifest.xml as a temporary workaround does work with 2020.3.0f1.
+```
