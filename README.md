@@ -19,9 +19,9 @@ The AR Movie Catalog is meant to provide a platform for both consumers and creat
 4. Using one of the two terminals described above, navigate to the project folder: `cd {path where you cloned this project}`;
 5. Run `npm install`.
 6. Run `npm install @react-navigation/native`.
-7. Run `npm install react-native-screens react-native-safe-area-context`.
+7. Run `npm install react-native-screens`.
 8. Run `npm install @react-navigation/native-stack`.
-9. Run ``.
+9. Run `npm install react-native-safe-area-context`.
 
 
 
