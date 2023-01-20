@@ -1,10 +1,14 @@
 
 import React, { useEffect, useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+
+import { useFocusEffect } from '@react-navigation/native';
 
 const LoginScreen = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [underline, setUnderline] = useState(false);
  // console.log(props.getParam?.email)
   //console.log(props.route.params)
   useEffect(() => {
@@ -12,7 +16,14 @@ const LoginScreen = (props) => {
     const password = props.route.params?.password;
     if (email) setEmail(email);
     if (password) setPassword(password);
+    
   }, [props.route.params]);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      setUnderline(false);
+    }, [])
+  );
 
   
   const handleLogin = () => {
@@ -20,37 +31,37 @@ const LoginScreen = (props) => {
     setEmail("");
     setPassword("");
   }
-  const [underline, setUnderline] = useState(false);
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    <Text>S'identifier</Text>
+    <View style={styles.container}>
+    <Text style={styles.title}>S'identifier</Text>
       <TextInput
-        style={{ height: 40, width: '90%', borderColor: 'gray', borderWidth: 1, marginBottom: 20, padding: 10 }}
+        style={styles.input}
         onChangeText={text => setEmail(text)}
         value={email}
         placeholder="Email"
       />
       <TextInput
-        style={{ height: 40, width: '90%', borderColor: 'gray', borderWidth: 1, marginBottom: 20, padding: 10 }}
+        style={styles.input}
         onChangeText={text => setPassword(text)}
         value={password}
         placeholder="Mot de passe"
         secureTextEntry={true}
       />
-      <TouchableOpacity style={{ height: 40, width: '90%', backgroundColor: '#007aff', alignItems: 'center', justifyContent: 'center' }} onPress={handleLogin}>
-        <Text style={{ color: 'white' }}>Se connecter</Text>
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+        <Text style={styles.buttonText}>Se connecter</Text>
       </TouchableOpacity>
-      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 10 }}>
-  <Text style={{ color: 'black' }}>Pas de compte ?</Text>
+      <View style={styles.registerContainer}>
+  <Text style={styles.registerText}>Pas de compte ?</Text>
   <TouchableOpacity
-  style={{ marginLeft: 5 }}
+  style={styles.registerLink}
   onPress={() => {
     setUnderline(!underline);
     props.navigation.navigate('Register');
+   
   }}
   underlayColor="transparent"
 >
-  <Text style={{ color: 'black', textDecorationLine: underline ? 'underline' : 'none' }}>inscrivez-vous.</Text>
+<Text style={underline ? styles.underlineText : styles.normalText}>inscrivez-vous.</Text>
 </TouchableOpacity>
 </View>
 </View>
@@ -58,6 +69,58 @@ const LoginScreen = (props) => {
 };
 
 export default LoginScreen;
+
+
+const styles = StyleSheet.create({
+  container: {
+  flex: 1,
+  alignItems: 'center',
+  justifyContent: 'center',
+  },
+  text: {
+  fontSize: 20,
+  marginBottom: 20,
+  },
+  input: {
+  height: 40,
+  width: '90%',
+  borderColor: 'gray',
+  borderWidth: 1,
+  marginBottom: 20,
+  padding: 10,
+  },
+  button: {
+  height: 40,
+  width: '90%',
+  backgroundColor: '#007aff',
+  alignItems: 'center',
+  justifyContent: 'center',
+  },
+  buttonText: {
+  color: 'white',
+  },
+  registerContainer: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'center',
+  marginTop: 10,
+  },
+  registerText: {
+  color: 'black',
+  },
+  registerLink: {
+  marginLeft: 5,
+  },
+  underlineText: {
+  color: 'black',
+  textDecorationLine: 'underline'
+  },
+  normalText: {
+  color: 'black'
+  },
+  });
+
+
 
 /*
 
