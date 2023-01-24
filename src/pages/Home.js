@@ -92,11 +92,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: 'black',  
+    backgroundColor: 'black',
   },
   welcomeContainer: {
     textAlign: 'center',
-    alignSelf: 'center',
+    alignSelf: 'center'
 
   },
   welcome: {  
@@ -115,20 +115,29 @@ const styles = StyleSheet.create({
   bigSquare: {
     alignSelf:'center',
     width: 350,
-    height: 200,
-    marginBottom: 20,
-    backgroundColor: 'white',
+    height: 400,
+    marginBottom: 30,
+    backgroundColor: 'grey',
+    borderRadius:10,
+    //Shadowbox
+    elevation: 20,
+    shadowColor: 'white',
   },
   new: {
     fontSize: 15,  
-    height : 30, 
+    height : 20, 
     color: 'white'
   },
   square: {
     width: 110, 
     height: 150, 
     marginLeft: 5,
-    backgroundColor: 'white',
+    backgroundColor: 'grey',
+    borderRadius:10,
+    marginBottom:15,
+    //Shadowbox
+    elevation: 8,
+    shadowColor: 'white',
   },
   separator: {
     width: 5,
@@ -138,7 +147,7 @@ const styles = StyleSheet.create({
     paddingBottom: 50, //taille de la barre de navigation
   },
   list: {
-    marginBottom: 20,
+    marginBottom: 30,
   }
 });
 
