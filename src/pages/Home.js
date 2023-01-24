@@ -96,14 +96,14 @@ const styles = StyleSheet.create({
   },
   welcomeContainer: {
     textAlign: 'center',
-    alignSelf: 'center'
+    alignSelf: 'center',
 
   },
   welcome: {  
     fontSize: 30,  
     textAlign: 'center',  
     margin: 10,  
-    color: 'white'
+    color: 'white',
   },
   navigationBarContainer: {
     position: 'absolute',
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
   new: {
     fontSize: 15,  
     height : 20, 
-    color: 'white'
+    color: 'white',
   },
   square: {
     width: 110, 
