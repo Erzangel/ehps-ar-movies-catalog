@@ -154,8 +154,9 @@ const styles = StyleSheet.create({
   },
   new: {
     fontSize: 15,  
+    fontWeight: 'bold',
     height: 20, 
-    color: 'white',
+    color: '#609BFA',
     marginLeft: 10,
   },
   square: {
