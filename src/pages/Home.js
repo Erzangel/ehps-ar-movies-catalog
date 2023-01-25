@@ -31,6 +31,7 @@ const whiteSquare = () => <View style={styles.square} />
 const ItemSeparator = () => <View style={styles.separator} />;
 const imageBackground = require("./testFondApp.jpg");
 const imageFilmZetT = require("./Affiche-Film-ZetTASSE.jpg");
+const imageLogo = require("./Mirage_Font_logo.png");
 
 return (
   
@@ -39,7 +40,7 @@ return (
     <View style={styles.scrollContainer}>
     <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
     <View style={styles.welcomeContainer}>
-      <Text style={styles.welcome}>Mirage</Text>
+    <ImageBackground source={imageLogo} style={styles.imageWelcome} />
     </View>
 
     <View style={styles.bigSquare}>
@@ -105,6 +106,19 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
+  imageWelcome: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    resizeMode: 'cover',
+    
+  },
+  welcomeContainer: {
+    textAlign: 'center',
+    alignSelf: 'center',
+    height: 100,
+    width: 200,
+  },
   imagePresentoir: {
     flex: 1,
     justifyContent: 'center',
@@ -112,11 +126,6 @@ const styles = StyleSheet.create({
     borderColor: 'lightgrey',
     borderWidth: 3,
     borderRadius: 5,
-  },
-  welcomeContainer: {
-    textAlign: 'center',
-    alignSelf: 'center',
-
   },
   welcome: {  
     fontSize: 30,  
