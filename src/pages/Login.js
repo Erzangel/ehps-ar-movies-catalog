@@ -7,6 +7,7 @@ import { useFocusEffect } from '@react-navigation/native';
 const LoginScreen = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [user, setUser] = useState(null);
 
   const [underline, setUnderline] = useState(false);
  // console.log(props.getParam?.email)
@@ -26,11 +27,30 @@ const LoginScreen = (props) => {
   );
 
   
-  const handleLogin = () => {
+  const handleLogin = async () => {
+    try {
+     
+      const response = await axios.get(url, { cancelToken: source.token });
+      if (response.status === 200) {
+        setUser(response.data.data);
+        return;
+      } else {
+        throw new Error("Failed to fetch users");
+      }
+    } catch (error) {
+      if(axios.isCancel(error)){
+        console.log('Data fetching cancelled');
+      }else{
+        setErrorFlag(true);
+        setIsLoading(false);
+      }
+    }
+
     props.navigation.navigate('Home');
     setEmail("");
     setPassword("");
   }
+
   return (
     <View style={styles.container}>
     <Text style={styles.title}>S'identifier</Text>

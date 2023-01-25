@@ -22,6 +22,8 @@ The AR Movie Catalog is meant to provide a platform for both consumers and creat
 7. Run `npm install react-native-screens`.
 8. Run `npm install @react-navigation/native-stack`.
 9. Run `npm install react-native-safe-area-context`.
+10. Run `npm install axios`.
+
 
 
 

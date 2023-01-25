@@ -129,6 +129,7 @@ const styles = StyleSheet.create({
     height: 150, 
     marginLeft: 5,
     backgroundColor: 'white',
+
   },
   separator: {
     width: 5,
