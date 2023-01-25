@@ -1,12 +1,12 @@
 
-import { StatusBar } from "react-native";
+import { ImageBackground, StatusBar } from "react-native";
 import { Text, View, FlatList, SafeAreaView } from "react-native";
 import { StyleSheet } from "react-native";
 import NavigationBar from "../components/BottomTabNavigator";
 import { useNavigation } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
 import { BackHandler } from 'react-native';
-import { ScrollView } from "react-native-gesture-handler";
+import { BorderlessButton, ScrollView } from "react-native-gesture-handler";
 
   /*
   useEffect(() => {
@@ -29,19 +29,25 @@ const Home = () => {
 
 const whiteSquare = () => <View style={styles.square} />
 const ItemSeparator = () => <View style={styles.separator} />;
+const imageBackground = require("./testFondApp.jpg");
+const imageFilmZetT = require("./Affiche-Film-ZetTASSE.jpg");
 
 return (
   
   <View style={styles.container}>
+    <ImageBackground source={imageBackground} style={styles.imageFond}>
     <View style={styles.scrollContainer}>
     <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
     <View style={styles.welcomeContainer}>
       <Text style={styles.welcome}>Mirage</Text>
     </View>
-    <View style={styles.bigSquare} />
+
+    <View style={styles.bigSquare}>
+      <ImageBackground source={imageFilmZetT} style={styles.imagePresentoir} />
+    </View>
 
     <View style={styles.list}>
-      <Text style={styles.new}> Nouveautées </Text>
+      <Text style={styles.new}> Ajouts récents </Text>
 <SafeAreaView>
     <FlatList
       data={Array(nb)}
@@ -55,7 +61,7 @@ return (
     </View>
 
     <View style={styles.list}>
-      <Text style={styles.new}> Tendances actuelles </Text>
+      <Text style={styles.new}> Tendances </Text>
 <SafeAreaView>
     <FlatList
       data={Array(nb)}
@@ -78,6 +84,7 @@ return (
   <View style={styles.navigationBarContainer}>
       <NavigationBar/>
     </View>
+    </ImageBackground>
   </View>
  
 
@@ -93,6 +100,18 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     backgroundColor: 'black',
+  },
+  imageFond: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  imagePresentoir: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: 'lightgrey',
+    borderWidth: 3,
+    borderRadius: 5,
   },
   welcomeContainer: {
     textAlign: 'center',
@@ -119,14 +138,16 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     backgroundColor: 'grey',
     borderRadius:10,
+    padding: 1,
     //Shadowbox
     elevation: 20,
     shadowColor: 'white',
   },
   new: {
     fontSize: 15,  
-    height : 20, 
+    height: 20, 
     color: 'white',
+    marginLeft: 10,
   },
   square: {
     width: 110, 
