@@ -1,6 +1,6 @@
 
 import { StatusBar } from "react-native";
-import { Text, View, FlatList, SafeAreaView } from "react-native";
+import { Text, View, FlatList, SafeAreaView, TouchableOpacity, Image } from "react-native";
 import { StyleSheet } from "react-native";
 import NavigationBar from "../components/BottomTabNavigator";
 import { useNavigation } from '@react-navigation/native';
@@ -23,6 +23,86 @@ import { ScrollView } from "react-native-gesture-handler";
    
 */
 
+
+
+
+const Home = () => {
+  const [nb, setNb] = useState(5);
+  
+  const handleImagePress = (image) => {
+  // Do something with the image
+  }
+  const imagesNew = ['https://reactnative.dev/img/tiny_logo.png', 'https://reactnative.dev/img/tiny_logo.png', 'https://reactnative.dev/img/tiny_logo.png', 'https://reactnative.dev/img/tiny_logo.png', 'https://reactnative.dev/img/tiny_logo.png']
+  const imagesPop = ['https://reactnative.dev/img/tiny_logo.png', 'https://reactnative.dev/img/tiny_logo.png', 'https://reactnative.dev/img/tiny_logo.png', 'https://reactnative.dev/img/tiny_logo.png', 'https://reactnative.dev/img/tiny_logo.png']
+
+  
+  const ItemSeparator = () => <View style={styles.separator} />;
+  
+  return (
+  <View style={styles.container}>
+  <View style={styles.scrollContainer}>
+  <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
+  <View style={styles.welcomeContainer}>
+  <Text style={styles.welcome}>Mirage</Text>
+  </View>
+  <View style={styles.bigSquare} />
+  <View style={styles.list}>
+        <Text style={styles.new}> Nouveautées </Text>
+        <SafeAreaView>
+          <FlatList
+            data={Array(nb)}
+            renderItem={({ item, index }) => (
+              <View style={styles.square}>
+              <TouchableOpacity style={styles.imageTouchable} onPress={() => alert('Image ' + (index + 1) + ' pressed!')}>
+                <View style={styles.imageContainer}>
+                  <Image source={{ uri: imagesNew[index] }} style={styles.image} />
+                  </View>
+              </TouchableOpacity>
+            </View>
+            )}
+            keyExtractor={(item, index) => index.toString()}
+            horizontal={true}
+            ItemSeparatorComponent={ItemSeparator}
+            showsHorizontalScrollIndicator={false}
+          />
+        </SafeAreaView>
+      </View>
+
+      <View style={styles.list}>
+        <Text style={styles.new}> Tendances actuelles </Text>
+        <SafeAreaView>
+          <FlatList
+            data={Array(nb)}
+            renderItem={({ item, index }) => (
+              <View style={styles.square}>
+              <TouchableOpacity style={styles.imageTouchable} onPress={() => alert('Image ' + (index + 1) + ' pressed!')}>
+                <View style={styles.imageContainer}>
+                  <Image source={{ uri: imagesPop[index] }} style={styles.image} />
+                  </View>
+              </TouchableOpacity>
+            </View>
+            )}
+            keyExtractor={(item, index) => index.toString()}
+            horizontal={true}
+            ItemSeparatorComponent={ItemSeparator}
+            showsHorizontalScrollIndicator={false}
+          />
+        </SafeAreaView>
+      </View>
+
+      <StatusBar style="auto"/>
+    </ScrollView>
+  </View>
+  <View style={styles.navigationBarContainer}>
+    <NavigationBar/>
+  </View>
+</View>
+);
+};
+
+export default Home;
+//<Image source={{uri: eval(`image${index + 1}`)}} style={styles.image} />
+/*
 const Home = () => {
   const [nb, setNb] = useState(5);
 
@@ -85,7 +165,7 @@ return (
 };
 
 export default Home;
-
+*/
 
 const styles = StyleSheet.create({
 
@@ -139,7 +219,24 @@ const styles = StyleSheet.create({
   },
   list: {
     marginBottom: 20,
-  }
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 4,
+  },
+  imageContainer: {
+    width: 100,
+    height: 100,
+    borderRadius: 4,
+    overflow: 'hidden',
+  },
+  imageTouchable: {
+    width: 100,
+    height: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
 
 
