@@ -18,6 +18,12 @@ The AR Movie Catalog is meant to provide a platform for both consumers and creat
 3. (Optional) If using Windows, you may install [Git Bash](https://git-scm.com/downloads) for a nicer terminal. Otherwise, use Powershell (right-click on the Windows icon on the bottom-left, and choose `Windows PowerShell`).
 4. Using one of the two terminals described above, navigate to the project folder: `cd {path where you cloned this project}`;
 5. Run `npm install`.
+6. Run `npm install @react-navigation/native`.
+7. Run `npm install react-native-screens`.
+8. Run `npm install @react-navigation/native-stack`.
+9. Run `npm install react-native-safe-area-context`.
+
+
 
 ### Run the project
 
