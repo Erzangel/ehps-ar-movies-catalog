@@ -3,8 +3,8 @@ import { ImageBackground, StatusBar } from "react-native";
 import { Text, View, FlatList, SafeAreaView, TouchableOpacity, Image } from "react-native";
 import { StyleSheet } from "react-native";
 import NavigationBar from "../components/BottomTabNavigator";
-import { useNavigation } from '@react-navigation/native';
-import { useEffect, useState } from 'react';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import { useEffect, useCallback, useState } from 'react';
 import { BackHandler } from 'react-native';
 import Orientation from 'react-native-orientation-locker';
 import { BorderlessButton, ScrollView } from "react-native-gesture-handler";
@@ -43,6 +43,13 @@ const Home = ({navigation}) => {
   
   const ItemSeparator = () => <View style={styles.separator} />;
   
+  // Force portrait on back button press
+  useFocusEffect(
+    useCallback(() => {
+      Orientation.lockToPortrait();
+    }, [])
+  );
+
   return (
   <View style={styles.container}>
   <View style={styles.scrollContainer}>
@@ -52,7 +59,9 @@ const Home = ({navigation}) => {
       <ImageBackground source={imageLogo} style={styles.imageWelcome} />
     </View>
     <View style={styles.bigSquare}>
-      <ImageBackground source={imageFilmZetT} style={styles.imagePresentoir} />
+      <ImageBackground source={imageFilmZetT} style={styles.imagePresentoir} >
+        <TouchableOpacity style={styles.imageTouchable} onPress={() => navigation.navigate('Unity')}></TouchableOpacity>
+      </ImageBackground>
     </View>
   <View style={styles.list}>
         <Text style={styles.new}> Nouveautées </Text>
