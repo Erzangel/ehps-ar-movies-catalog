@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
 import { BackHandler } from 'react-native';
 import { ScrollView } from "react-native-gesture-handler";
+import Orientation from 'react-native-orientation-locker';
 
   /*
   useEffect(() => {
@@ -27,6 +28,7 @@ import { ScrollView } from "react-native-gesture-handler";
 
 
 const Home = ({navigation}) => {
+  Orientation.lockToPortrait();
   const [nb, setNb] = useState(5);
   
   const handleImagePress = (image) => {

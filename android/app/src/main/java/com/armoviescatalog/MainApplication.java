@@ -10,6 +10,8 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.config.ReactFeatureFlags;
 import com.facebook.soloader.SoLoader;
 import com.armoviescatalog.newarchitecture.MainApplicationReactNativeHost;
+import org.wonday.orientation.OrientationPackage;
+import org.wonday.orientation.OrientationActivityLifecycle;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
@@ -56,6 +58,7 @@ public class MainApplication extends Application implements ReactApplication {
     ReactFeatureFlags.useTurboModules = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED;
     SoLoader.init(this, /* native exopackage */ false);
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
+	registerActivityLifecycleCallbacks(OrientationActivityLifecycle.getInstance());
   }
 
   /**
