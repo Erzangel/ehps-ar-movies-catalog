@@ -26,7 +26,7 @@ import { ScrollView } from "react-native-gesture-handler";
 
 
 
-const Home = () => {
+const Home = ({navigation}) => {
   const [nb, setNb] = useState(5);
   
   const handleImagePress = (image) => {
@@ -75,7 +75,7 @@ const Home = () => {
             data={Array(nb)}
             renderItem={({ item, index }) => (
               <View style={styles.square}>
-              <TouchableOpacity style={styles.imageTouchable} onPress={() => alert('Image ' + (index + 1) + ' pressed!')}>
+              <TouchableOpacity style={styles.imageTouchable} onPress={() => navigation.navigate('Unity')}>
                 <View style={styles.imageContainer}>
                   <Image source={{ uri: imagesPop[index] }} style={styles.image} />
                   </View>
