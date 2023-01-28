@@ -35,7 +35,7 @@ const Home = () => {
   const imageBackground = require("./testFondApp.jpg");
   const imageFilmZetT = require("./Affiche-Film-ZetTASSE.jpg");
   const imageLogo = require("./Mirage_Font_logo.png");
-  const imagesNew = ['https://reactnative.dev/img/tiny_logo.png', 'https://reactnative.dev/img/tiny_logo.png', 'https://reactnative.dev/img/tiny_logo.png', 'https://reactnative.dev/img/tiny_logo.png', 'https://reactnative.dev/img/tiny_logo.png']
+  const imagesNew = [imageFilmZetT, 'https://reactnative.dev/img/tiny_logo.png', 'https://reactnative.dev/img/tiny_logo.png', 'https://reactnative.dev/img/tiny_logo.png', 'https://reactnative.dev/img/tiny_logo.png']
   const imagesPop = ['https://reactnative.dev/img/tiny_logo.png', 'https://reactnative.dev/img/tiny_logo.png', 'https://reactnative.dev/img/tiny_logo.png', 'https://reactnative.dev/img/tiny_logo.png', 'https://reactnative.dev/img/tiny_logo.png']
 
   
@@ -61,7 +61,7 @@ const Home = () => {
               <View style={styles.square}>
               <TouchableOpacity style={styles.imageTouchable} onPress={() => alert('Image ' + (index + 1) + ' pressed!')}>
                 <View style={styles.imageContainer}>
-                  <Image source={{ uri: imagesNew[index] }} style={styles.image} />
+                  <Image source={imagesNew[index]} style={styles.image} />
                   </View>
               </TouchableOpacity>
             </View>
@@ -83,7 +83,7 @@ const Home = () => {
               <View style={styles.square}>
               <TouchableOpacity style={styles.imageTouchable} onPress={() => alert('Image ' + (index + 1) + ' pressed!')}>
                 <View style={styles.imageContainer}>
-                  <Image source={{ uri: imagesPop[index] }} style={styles.image} />
+                  <Image source={imagesPop[index]} style={styles.image} />
                   </View>
               </TouchableOpacity>
             </View>
