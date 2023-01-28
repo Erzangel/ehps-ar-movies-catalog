@@ -45,6 +45,19 @@ const SignupScreen = (props) => {
         });
         if (response.status === 201) {
           console.log(` You have created: ${JSON.stringify(response.data)}`);
+          try {
+            const url = `${baseUrl}/users`
+            const responsetest2 = await axios.get(url);
+            const response = await axios.get(url);
+            if (response.status === 200) {
+              console.log("good");
+            } else {
+              console.log(response.status);
+              throw new Error("An error has occurred");
+            }
+          } catch (error) {
+            console.log("An error has occurred");
+          }
           props.navigation.navigate('Login' ,{ email: email, password: password });
         } else {
           console.log(response.status);

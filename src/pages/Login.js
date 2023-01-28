@@ -3,11 +3,16 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
 import { useFocusEffect } from '@react-navigation/native';
+import axios from 'axios';
+
+const baseUrl = "http://90.91.27.127:25565";
 
 const LoginScreen = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState(null);
+  const [userId, setUserId] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasError, setErrorFlag] = useState(false);
 
   const [underline, setUnderline] = useState(false);
  // console.log(props.getParam?.email)
@@ -29,12 +34,60 @@ const LoginScreen = (props) => {
   
   const handleLogin = async () => {
     try {
-     
+      const url = `${baseUrl}/userbyemail/${email}`
+      const response = await axios.get(url);
+      if (response.status === 200 && email!== "") {
+
+
+        setUserId(response.data.id);
+        //console.log("Response : ", response.data);
+       //console.log("---------------------------------------");
+       // console.log("User : ", user);
+       // console.log("---------------------------------------");
+
+       try {
+        const url2 = `${baseUrl}/userAuth/${userId}`
+        const response2 = await axios.put(url2, {"password": password});
+        if (response2.status === 200) {
+  
+         console.log("Response MDP: ", response2.data);
+         console.log("---------------------------------------");
+
+          props.navigation.navigate('Home');
+          setEmail("");
+          setPassword("");
+  
+        } else {
+          console.log("Response Statut", response2.status);
+          throw new Error("Mot de passe invalide");
+         
+        }
+      } catch (error) {
+        
+        alert("Mot de passe invalide");
+      }
+
+
+      } else {
+        console.log(response.status);
+        throw new Error("email invalide");
+       
+      }
+    } catch (error) {
+      
+      alert("email invalide");
+    }
+    /*try { 
+      console.log("aaaaa");
+      setIsLoading(true);
       const response = await axios.get(url, { cancelToken: source.token });
       if (response.status === 200) {
         setUser(response.data.data);
+        console.log("good");
+        setIsLoading(false);
         return;
       } else {
+        console.log("erreur");
         throw new Error("Failed to fetch users");
       }
     } catch (error) {
@@ -45,10 +98,7 @@ const LoginScreen = (props) => {
         setIsLoading(false);
       }
     }
-
-    props.navigation.navigate('Home');
-    setEmail("");
-    setPassword("");
+*/
   }
 
   return (
