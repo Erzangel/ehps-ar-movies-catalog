@@ -53,7 +53,7 @@ const Home = () => {
   return (
   <View style={styles.container}>
   <View style={styles.scrollContainer}>
-    <ImageBackground source={imageBackground} style={styles.imageFond}>
+    
     <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
     <View style={styles.welcomeContainer}>
       <ImageBackground source={imageLogo} style={styles.imageWelcome} />
@@ -108,7 +108,7 @@ const Home = () => {
 
       <StatusBar style="auto"/>
     </ScrollView>
-    </ImageBackground>
+    
   </View>
   <View style={styles.navigationBarContainer}>
     <NavigationBar/>
@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: 'black',
+    backgroundColor: '#0D151C',
   },
   imageFond: {
     flex: 1,
@@ -273,7 +273,7 @@ const styles = StyleSheet.create({
     height: 100,
     margin: 3,
     borderRadius: 10,
-    borderColor: '#2991EE',
+    borderColor: '#324F69',
     borderWidth: 1,
     //Shadowbox
     elevation: 8,
