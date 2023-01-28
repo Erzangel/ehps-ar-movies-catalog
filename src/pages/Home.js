@@ -35,8 +35,17 @@ const Home = () => {
   const imageBackground = require("./testFondApp.jpg");
   const imageFilmZetT = require("./Affiche-Film-ZetTASSE.jpg");
   const imageLogo = require("./Mirage_Font_logo.png");
-  const imagesNew = [imageFilmZetT, 'https://reactnative.dev/img/tiny_logo.png', 'https://reactnative.dev/img/tiny_logo.png', 'https://reactnative.dev/img/tiny_logo.png', 'https://reactnative.dev/img/tiny_logo.png']
-  const imagesPop = ['https://reactnative.dev/img/tiny_logo.png', 'https://reactnative.dev/img/tiny_logo.png', 'https://reactnative.dev/img/tiny_logo.png', 'https://reactnative.dev/img/tiny_logo.png', 'https://reactnative.dev/img/tiny_logo.png']
+  const imageAFH1 = require("./affiche-film-dhorreur-1.png");
+  const imageAFH2 = require("./affiche-film-dhorreur-2.png");
+  const imageAFH3 = require("./affiche-film-dhorreur-3.png");
+  const imageAFH4 = require("./affiche-film-dhorreur-4.png");
+  const imageAFH5 = require("./affiche-film-dhorreur-5.png");
+  const imageAFH6 = require("./affiche-film-dhorreur-6.png");
+  const imageAFH7 = require("./affiche-film-dhorreur-7.png");
+  const imageAFH8 = require("./affiche-film-dhorreur-8.png");
+  const imageAFH9 = require("./affiche-film-dhorreur-9.png");
+  const imagesNew = [imageFilmZetT, imageAFH1, imageAFH2, imageAFH3, imageAFH4]
+  const imagesPop = [imageAFH5,imageAFH6,imageAFH7,imageAFH8,imageAFH9]
 
   
   const ItemSeparator = () => <View style={styles.separator} />;
@@ -227,6 +236,7 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     zIndex: 1,
+
   },
   bigSquare: {
     alignSelf:'center',
@@ -246,17 +256,7 @@ const styles = StyleSheet.create({
     height: 20, 
     color: '#609BFA',
     marginLeft: 10,
-  },
-  square: {
-    width: 110, 
-    height: 150, 
-    marginLeft: 5,
-    backgroundColor: 'grey',
-    borderRadius:10,
-    marginBottom:15,
-    //Shadowbox
-    elevation: 8,
-    shadowColor: 'white',
+    marginBottom: 15,
   },
   separator: {
     width: 5,
@@ -269,9 +269,15 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   image: {
-    width: '100%',
-    height: '100%',
-    borderRadius: 4,
+    width: 100,
+    height: 100,
+    margin: 3,
+    borderRadius: 10,
+    borderColor: '#2991EE',
+    borderWidth: 1,
+    //Shadowbox
+    elevation: 8,
+    shadowColor: 'white',
   },
   imageContainer: {
     width: 100,

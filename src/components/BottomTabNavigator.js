@@ -39,7 +39,9 @@ const styles = StyleSheet.create({
     height: 50,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#f5f5f5',
+    backgroundColor: 'black',
+    borderWidth:2,
+    borderColor: 'grey',
   },
   navigationBarTab: {
     flex: 1,
@@ -48,10 +50,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   activeTabText: {
-    color: 'black',
+    fontSize: 15,  
+    fontWeight: 'bold',
+    color: '#1A64A6',
   },
   inactiveTabText: {
-    color: 'gray',
+    fontSize: 15,  
+    fontWeight: 'bold',
+    color: '#609BFA',
+    textShadowColor: 'rgba(255, 255, 255, 0.2)',
+    textShadowOffset: {width: -1, height: 1},
+    textShadowRadius: 10,
   },
 });
 
