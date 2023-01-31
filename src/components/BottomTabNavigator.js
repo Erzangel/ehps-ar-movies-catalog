@@ -3,6 +3,7 @@ import { Button, View, Text, TouchableOpacity } from 'react-native';
 import { StyleSheet } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import { useRoute } from '@react-navigation/native';
+import Orientation from 'react-native-orientation-locker';
 
 function NavigationBar ({}) {
 const navigation = useNavigation(); 
@@ -12,7 +13,10 @@ const route = useRoute();
       <View style={styles.navigationBarContainer}>
         <TouchableOpacity 
             style={styles.navigationBarTab}
-            onPress={() => navigation.navigate('Home')}
+            onPress={() => {
+              Orientation.lockToPortrait();
+              navigation.navigate('Home')
+            }}
             >
           <Text style={route.name === 'Home' ? styles.activeTabText : styles.inactiveTabText}>
             Home
