@@ -2,9 +2,10 @@ import { ImageBackground, StatusBar } from "react-native";
 import { Text, View, FlatList, SafeAreaView, TouchableOpacity, Image } from "react-native";
 import { StyleSheet } from "react-native";
 import NavigationBar from "../components/BottomTabNavigator";
-import { useNavigation } from '@react-navigation/native';
-import { useEffect, useState } from 'react';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import { useEffect, useCallback, useState } from 'react';
 import { BackHandler } from 'react-native';
+import Orientation from 'react-native-orientation-locker';
 import { ScrollView } from "react-native-gesture-handler";
 
   /*
@@ -25,14 +26,21 @@ import { ScrollView } from "react-native-gesture-handler";
 const Home = (props) => {
   const [nb, setNb] = useState(5);
   const [userId, setUserId] = useState(props.route.params?.userId);
-
+  const navigation = props.navigation
   useEffect(() => {
     setUserId(props.route.params?.userId);
     
   }, [props.route.params]);
-
+  console.log("User ID: " + userId)
   const whiteSquare = () => <View style={styles.square} />
   const ItemSeparator = () => <View style={styles.separator} />;
+
+  // Force portrait on back button press
+  useFocusEffect(
+    useCallback(() => {
+      Orientation.lockToPortrait();
+    }, [])
+  );
 
   const imageBackground = require("./testFondApp.jpg");
   const imageFilmZetT = require("./Affiche-Film-ZetTASSE.jpg");
@@ -60,7 +68,9 @@ const Home = (props) => {
       <ImageBackground source={imageLogo} style={styles.imageWelcome} />
     </View>
     <View style={styles.bigSquare}>
-      <ImageBackground source={imageFilmZetT} style={styles.imagePresentoir} />
+      <ImageBackground source={imageFilmZetT} style={styles.imagePresentoir}>
+        <TouchableOpacity style={styles.imageTouchable} onPress={() => navigation.navigate('Unity')}></TouchableOpacity>
+      </ImageBackground>
     </View>
     <View style={styles.list}>
       <Text style={styles.new}> Nouveautées </Text>
@@ -69,7 +79,7 @@ const Home = (props) => {
           data={Array(nb)}
           renderItem={({ item, index }) => (
             <View style={styles.square}>
-              <TouchableOpacity style={styles.imageTouchable} onPress={() => alert('Image ' + (index + 1) + ' pressed!')}>
+              <TouchableOpacity style={styles.imageTouchable} onPress={() => navigation.navigate('Unity')}>
                 <View style={styles.imageContainer}>
                   <Image source={imagesNew[index]} style={styles.image} />
                 </View>

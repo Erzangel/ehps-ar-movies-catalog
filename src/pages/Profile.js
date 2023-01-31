@@ -65,71 +65,74 @@ export default Profile;
 
 
 const styles = StyleSheet.create({
-container: {
-flex: 1,
-alignItems: 'center',
-backgroundColor: '#F5F5F5',
-},
-headerContainer: {
-width: '100%',
-height: 80,
-paddingTop: 40,
-backgroundColor: '#007aff',
-alignItems: 'center',
-justifyContent: 'center',
-flexDirection: 'row',
-},
-name: {
-color: 'white',
-fontSize: 22,
-fontWeight: 'bold',
-marginRight: 'auto',
-},
-editButton: {
-backgroundColor: 'white',
-padding: 10,
-borderRadius: 5,
-marginLeft: 10,
-},
-editText: {
-color: '#007aff',
-fontWeight: 'bold',
-},
-imageContainer: {
-width: '100%',
-height: 200,
-alignItems: 'center',
-justifyContent: 'center',
-marginTop: 20,
-},
-image: {
-width: 150,
-height: 150,
-borderRadius: 75,
-},
-infoContainer: {
-width: '100%',
-padding: 20,
-marginTop: 20,
-backgroundColor: 'white',
-alignItems: 'flex-start',
-},
-infoLabel: {
-color: 'gray',
-fontWeight: 'bold',
-marginBottom: 10,
-},
-infoText: {
-fontSize: 18,
-},
-navigationBarContainer: {
-width: '100%',
-position: 'absolute',
-bottom: 0,
-left: 0,
-right: 0,
-},
-});
+  container: {
+  flex: 1,
+  alignItems: 'center',
+  backgroundColor: '#0D151C',
+  },
+  headerContainer: {
+  width: '100%',
+  height: 80,
+  paddingTop: 40,
+  backgroundColor: '#0D151C',
+  borderBottomWidth: 2,
+  borderColor: 'lightgrey',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexDirection: 'row',
+  },
+  name: {
+  color: 'white',
+  fontSize: 22,
+  fontWeight: 'bold',
+  marginRight: 'auto',
+  marginLeft: '5',
+  },
+  editButton: {
+  backgroundColor: 'white',
+  padding: 10,
+  borderRadius: 5,
+  marginLeft: 10,
+  },
+  editText: {
+  color: '#007aff',
+  fontWeight: 'bold',
+  },
+  imageContainer: {
+  width: '100%',
+  height: 200,
+  alignItems: 'center',
+  justifyContent: 'center',
+  marginTop: 20,
+  },
+  image: {
+  width: 150,
+  height: 150,
+  borderRadius: 75,
+  },
+  infoContainer: {
+  width: '100%',
+  padding: 20,
+  marginTop: 20,
+  backgroundColor: 'white',
+  alignItems: 'flex-start',
+  },
+  infoLabel: {
+  color: 'gray',
+  fontWeight: 'bold',
+  marginBottom: 10,
+  },
+  infoText: {
+  fontSize: 18,
+  },
+  navigationBarContainer: {
+  width: '100%',
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  right: 0,
+  },
+  });
 
 
 /*

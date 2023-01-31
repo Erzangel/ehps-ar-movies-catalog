@@ -36,14 +36,21 @@ const LoginScreen = (props) => {
   
   const handleLogin = async () => {
     try {
+      console.log("yo")
       const url = `${baseUrl}/userbyemail/${email}`
       const response = await axios.get(url);
+      console.log("response: " + response)
+      console.log("response data id: " + response.data.id)
       if (response.status === 200 && email!== "") {
         setUserId(response.data.id);
        try {
         const url2 = `${baseUrl}/userAuth/${userId}`
+        console.log("avant + url2: " + url2)
+        console.log("password: " + password)
         const response2 = await axios.put(url2, {"password": password});
+        console.log("après")
         if (response2.status === 200) {
+          console.log("YO")
           props.navigation.navigate('Home',{userId : userId});
           setEmail("");
           setPassword("");
@@ -94,9 +101,9 @@ const LoginScreen = (props) => {
   return (
     <View style={styles.container}>
       <View style={styles.welcomeContainer}>
-      <ImageBackground source={imageLogo} style={styles.imageWelcome} />
+        <ImageBackground source={imageLogo} style={styles.imageWelcome} />
       </View>
-    <Text style={styles.title}>Connexion</Text>
+      <Text style={styles.title}>Connexion</Text>
       <TextInput
         style={styles.input}
         onChangeText={text => setEmail(text)}
@@ -114,20 +121,19 @@ const LoginScreen = (props) => {
         <Text style={styles.buttonText}>Se connecter</Text>
       </TouchableOpacity>
       <View style={styles.registerContainer}>
-  <Text style={styles.registerText}>Pas de compte ?</Text>
-  <TouchableOpacity
-  style={styles.registerLink}
-  onPress={() => {
-    setUnderline(!underline);
-    props.navigation.navigate('Register');
-   
-  }}
-  underlayColor="transparent"
->
-<Text style={underline ? styles.underlineText : styles.normalText}>Inscrivez-vous.</Text>
-</TouchableOpacity>
-</View>
-</View>
+        <Text style={styles.registerText}>Pas de compte ?</Text>
+        <TouchableOpacity
+          style={styles.registerLink}
+          onPress={() => {
+            setUnderline(!underline);
+          props.navigation.navigate('Register');
+          }}
+          underlayColor="transparent"
+        >
+          <Text style={underline ? styles.underlineText : styles.normalText}>Inscrivez-vous.</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 };
 
