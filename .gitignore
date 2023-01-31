@@ -60,3 +60,4 @@ buck-out/
 
 # Ignore Unity builds
 unity/builds/
+/unity/builds/android/
