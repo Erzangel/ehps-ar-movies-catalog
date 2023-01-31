@@ -17,8 +17,8 @@ The AR Movie Catalog is meant to provide a platform for both consumers and creat
 2. Clone this repository using either [GitHub Desktop](https://desktop.github.com/) or Git CLI: `git clone git@github.com:Erzangel/ece-horror-picture-show.git`;
 3. (Optional) If using Windows, you may install [Git Bash](https://git-scm.com/downloads) for a nicer terminal. Otherwise, use Powershell (right-click on the Windows icon on the bottom-left, and choose `Windows PowerShell`).
 4. Integrate an Unity project to launch in the app:
-   1. Either follow steps depicted [in the steps to export an existing Unity project]...
-   2. ...or use an existing release [such as the ECE Horror Picture Show Demo React Native release](https://github.com/Erzangel/ece-horror-picture-show) in the following folder: `[project-root]/unity/builds/android/`
+   1. **To integrate new Unity projets:** Follow steps depicted [in the steps to export an existing Unity project](./docs/dev/integrating-unity.md)...
+   2. **Otherwise:** Use an existing release [such as the ECE Horror Picture Show Demo React Native release](https://github.com/Erzangel/ece-horror-picture-show) in the following folder: `[project-root]/unity/builds/android/`
 5. Using one of the two terminals described above, navigate to the project folder: `cd {path where you cloned this project}`;
 6. Install yarn with `npm i --global yarn`, then run `yarn install`. (npm not supported by react-native-orientation-lock package)
 
