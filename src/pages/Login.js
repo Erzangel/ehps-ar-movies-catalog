@@ -22,7 +22,6 @@ const LoginScreen = (props) => {
     const password = props.route.params?.password;
     if (email) setEmail(email);
     if (password) setPassword(password);
-    
   }, [props.route.params]);
 
   useFocusEffect(
@@ -37,33 +36,21 @@ const LoginScreen = (props) => {
       const url = `${baseUrl}/userbyemail/${email}`
       const response = await axios.get(url);
       if (response.status === 200 && email!== "") {
-
-
         setUserId(response.data.id);
-        //console.log("Response : ", response.data);
-       //console.log("---------------------------------------");
-       // console.log("User : ", user);
-       // console.log("---------------------------------------");
-
        try {
         const url2 = `${baseUrl}/userAuth/${userId}`
         const response2 = await axios.put(url2, {"password": password});
         if (response2.status === 200) {
-  
-         console.log("Response MDP: ", response2.data);
-         console.log("---------------------------------------");
-
-          props.navigation.navigate('Home');
+          props.navigation.navigate('Home',{userId : userId});
           setEmail("");
           setPassword("");
-  
         } else {
           console.log("Response Statut", response2.status);
           throw new Error("Mot de passe invalide");
          
         }
       } catch (error) {
-        
+        console.log("Response Statut", response2.status);
         alert("Mot de passe invalide");
       }
 
@@ -74,7 +61,7 @@ const LoginScreen = (props) => {
        
       }
     } catch (error) {
-      
+      console.log(response.status);
       alert("email invalide");
     }
     /*try { 

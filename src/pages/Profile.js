@@ -1,18 +1,47 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StatusBar } from "react-native";
 import { StyleSheet } from "react-native";
 import NavigationBar from "../components/BottomTabNavigator";
 import { View, Text, Image } from 'react-native';
+import axios from 'axios';
 
-const Profile = () => {
-  const [name, setName] = useState("John Doe");
-  const [email, setEmail] = useState("johndoe@example.com");
+
+const baseUrl = "http://90.91.27.127:25565";
+
+const Profile = (props) => {
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
   const [image, setImage] = useState("https://via.placeholder.com/150");
+  const [userId, setUserId] = useState(props.route.params?.userId)
 
-  const handleEdit = () => {
-    //props.navigation.navigate('EditProfile');
+
+  useEffect(() => {
+    setUserId(props.route.params?.userId);
+   // setUser(getUser());
+   
+   
+    //console.log("user : ",user)
+  }, [props.route.params]);
+
+  const getUser = async () => {
+    try {
+      const url = `${baseUrl}/users/${userId}`
+      const response = await axios.get(url);
+      if (response.status === 200) {
+        console.log("good");
+        setEmail(response.data.email);
+        setName(response.data.username)
+      } else {
+        console.log(response.status);
+        throw new Error("Erreur");
+      }
+    } catch (error) {
+      alert("Erreur");
+    }
   }
 
+
+ getUser();
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
@@ -26,7 +55,7 @@ const Profile = () => {
         <Text style={styles.infoText}>{email}</Text>
       </View>
       <View style={styles.navigationBarContainer}>
-        <NavigationBar/>
+        <NavigationBar userId = {userId}/>
       </View>
     </View>
   );

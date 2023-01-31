@@ -1,18 +1,25 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { Button, View, Text, TouchableOpacity } from 'react-native';
 import { StyleSheet } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import { useRoute } from '@react-navigation/native';
 
-function NavigationBar ({}) {
+function NavigationBar (props) {
 const navigation = useNavigation(); 
 const route = useRoute(); 
+const [userId, setUserId] = useState(props.userId);
+
+useEffect(() => {
+  setUserId(props.userId);
+  
+}, [props]);
+
 
     return (
       <View style={styles.navigationBarContainer}>
         <TouchableOpacity 
             style={styles.navigationBarTab}
-            onPress={() => navigation.navigate('Home')}
+            onPress={() => navigation.navigate('Home',{userId : userId})}
             >
           <Text style={route.name === 'Home' ? styles.activeTabText : styles.inactiveTabText}>
             Home
@@ -20,7 +27,7 @@ const route = useRoute();
         </TouchableOpacity>
         <TouchableOpacity 
             style={styles.navigationBarTab}
-            onPress={() => navigation.navigate('Profile')}
+            onPress={() => navigation.navigate('Profile',{userId : userId})}
             >
           <Text style={route.name === 'Profile' ? styles.activeTabText : styles.inactiveTabText}>
             Profile
