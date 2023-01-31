@@ -38,12 +38,31 @@ const LoginScreen = (props) => {
       if (response.status === 200 && email!== "") {
         setUserId(response.data.id);
        try {
-        const url2 = `${baseUrl}/userAuth/${userId}`
+        const url2 = `${baseUrl}/userAuth/${response.data.id}`
         const response2 = await axios.put(url2, {"password": password});
         if (response2.status === 200) {
-          props.navigation.navigate('Home',{userId : userId});
-          setEmail("");
-          setPassword("");
+          try {
+            const url = `${baseUrl}/users/${response.data.id}`
+            const response3 = await axios.get(url);
+            if (response3.status === 200) {
+              
+              const user = {
+                id: response3.data.id,
+                email: response3.data.email,
+                username: response3.data.username
+              };
+              props.navigation.navigate('Home',{user : user});
+              setEmail("");
+              setPassword("");
+            } else {
+              console.log("Response Statut", response2.status);
+              throw new Error("Mot de passe invalide");
+             
+            }
+          } catch (error) {
+            console.log("Response Statut", response2.status);
+            alert("Mot de passe invalide");
+          }
         } else {
           console.log("Response Statut", response2.status);
           throw new Error("Mot de passe invalide");
@@ -64,28 +83,7 @@ const LoginScreen = (props) => {
       console.log(response.status);
       alert("email invalide");
     }
-    /*try { 
-      console.log("aaaaa");
-      setIsLoading(true);
-      const response = await axios.get(url, { cancelToken: source.token });
-      if (response.status === 200) {
-        setUser(response.data.data);
-        console.log("good");
-        setIsLoading(false);
-        return;
-      } else {
-        console.log("erreur");
-        throw new Error("Failed to fetch users");
-      }
-    } catch (error) {
-      if(axios.isCancel(error)){
-        console.log('Data fetching cancelled');
-      }else{
-        setErrorFlag(true);
-        setIsLoading(false);
-      }
-    }
-*/
+
   }
 
   return (

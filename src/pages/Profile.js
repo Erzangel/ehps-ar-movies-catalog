@@ -9,53 +9,34 @@ import axios from 'axios';
 const baseUrl = "http://90.91.27.127:25565";
 
 const Profile = (props) => {
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
   const [image, setImage] = useState("https://via.placeholder.com/150");
-  const [userId, setUserId] = useState(props.route.params?.userId)
+  const [user, setUser] = useState(props.route.params?.user)
 
 
   useEffect(() => {
-    setUserId(props.route.params?.userId);
-   // setUser(getUser());
+    setUser(props.route.params?.user);
    
    
-    //console.log("user : ",user)
+    console.log("user : ",user)
   }, [props.route.params]);
 
-  const getUser = async () => {
-    try {
-      const url = `${baseUrl}/users/${userId}`
-      const response = await axios.get(url);
-      if (response.status === 200) {
-        console.log("good");
-        setEmail(response.data.email);
-        setName(response.data.username)
-      } else {
-        console.log(response.status);
-        throw new Error("Erreur");
-      }
-    } catch (error) {
-      alert("Erreur");
-    }
-  }
 
 
- getUser();
+
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
-        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.name}>{user.username}</Text>
       </View>
       <View style={styles.imageContainer}>
         <Image source={{uri: image}} style={styles.image}/>
       </View>
       <View style={styles.infoContainer}>
         <Text style={styles.infoLabel}>Email:</Text>
-        <Text style={styles.infoText}>{email}</Text>
+        <Text style={styles.infoText}>{user.email}</Text>
       </View>
       <View style={styles.navigationBarContainer}>
-        <NavigationBar userId = {userId}/>
+        <NavigationBar user = {user}/>
       </View>
     </View>
   );

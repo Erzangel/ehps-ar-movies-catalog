@@ -25,11 +25,11 @@ import { ScrollView } from "react-native-gesture-handler";
 
 const Home = (props) => {
   const [nb, setNb] = useState(5);
-  const [userId, setUserId] = useState(props.route.params?.userId);
+  const [user, setUser] = useState(props.route.params?.user);
 
   useEffect(() => {
-    setUserId(props.route.params?.userId);
-    
+    setUser(props.route.params?.user);
+
   }, [props.route.params]);
 
 const whiteSquare = () => <View style={styles.square} />
@@ -81,7 +81,7 @@ return (
     </View>
  
   <View style={styles.navigationBarContainer}>
-      <NavigationBar userId = {userId}/>
+      <NavigationBar user = {user}/>
     </View>
   </View>
  
