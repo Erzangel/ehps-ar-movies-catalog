@@ -1,13 +1,11 @@
-
 import { ImageBackground, StatusBar } from "react-native";
 import { Text, View, FlatList, SafeAreaView, TouchableOpacity, Image } from "react-native";
 import { StyleSheet } from "react-native";
 import NavigationBar from "../components/BottomTabNavigator";
-import { useNavigation, useFocusEffect } from '@react-navigation/native';
-import { useEffect, useCallback, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { useEffect, useState } from 'react';
 import { BackHandler } from 'react-native';
-import Orientation from 'react-native-orientation-locker';
-import { BorderlessButton, ScrollView } from "react-native-gesture-handler";
+import { ScrollView } from "react-native-gesture-handler";
 
   /*
   useEffect(() => {
@@ -24,16 +22,18 @@ import { BorderlessButton, ScrollView } from "react-native-gesture-handler";
    
 */
 
-
-
-
-const Home = ({navigation}) => {
-  Orientation.lockToPortrait();
+const Home = (props) => {
   const [nb, setNb] = useState(5);
-  
-  const handleImagePress = (image) => {
-  // Do something with the image
-  }
+  const [userId, setUserId] = useState(props.route.params?.userId);
+
+  useEffect(() => {
+    setUserId(props.route.params?.userId);
+    
+  }, [props.route.params]);
+
+  const whiteSquare = () => <View style={styles.square} />
+  const ItemSeparator = () => <View style={styles.separator} />;
+
   const imageBackground = require("./testFondApp.jpg");
   const imageFilmZetT = require("./Affiche-Film-ZetTASSE.jpg");
   const imageLogo = require("./Mirage_Font_logo.png");
@@ -50,49 +50,39 @@ const Home = ({navigation}) => {
   const imagesPop = [imageAFH5,imageAFH6,imageAFH7,imageAFH8,imageAFH9]
 
   
-  const ItemSeparator = () => <View style={styles.separator} />;
-  
-  // Force portrait on back button press
-  useFocusEffect(
-    useCallback(() => {
-      Orientation.lockToPortrait();
-    }, [])
-  );
-
   return (
-  <View style={styles.container}>
-  <View style={styles.scrollContainer}>
+  
+    <View style={styles.container}>
+    <View style={styles.scrollContainer}>
     
     <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
     <View style={styles.welcomeContainer}>
       <ImageBackground source={imageLogo} style={styles.imageWelcome} />
     </View>
     <View style={styles.bigSquare}>
-      <ImageBackground source={imageFilmZetT} style={styles.imagePresentoir} >
-        <TouchableOpacity style={styles.imageTouchable} onPress={() => navigation.navigate('Unity')}></TouchableOpacity>
-      </ImageBackground>
+      <ImageBackground source={imageFilmZetT} style={styles.imagePresentoir} />
     </View>
-  <View style={styles.list}>
-        <Text style={styles.new}> Nouveautées </Text>
-        <SafeAreaView>
-          <FlatList
-            data={Array(nb)}
-            renderItem={({ item, index }) => (
-              <View style={styles.square}>
+    <View style={styles.list}>
+      <Text style={styles.new}> Nouveautées </Text>
+      <SafeAreaView>
+        <FlatList
+          data={Array(nb)}
+          renderItem={({ item, index }) => (
+            <View style={styles.square}>
               <TouchableOpacity style={styles.imageTouchable} onPress={() => alert('Image ' + (index + 1) + ' pressed!')}>
                 <View style={styles.imageContainer}>
                   <Image source={imagesNew[index]} style={styles.image} />
-                  </View>
+                </View>
               </TouchableOpacity>
             </View>
-            )}
-            keyExtractor={(item, index) => index.toString()}
-            horizontal={true}
-            ItemSeparatorComponent={ItemSeparator}
-            showsHorizontalScrollIndicator={false}
-          />
-        </SafeAreaView>
-      </View>
+          )}
+          keyExtractor={(item, index) => index.toString()}
+          horizontal={true}
+          ItemSeparatorComponent={ItemSeparator}
+          showsHorizontalScrollIndicator={false}
+        />
+      </SafeAreaView>
+    </View>
 
       <View style={styles.list}>
         <Text style={styles.new}> Tendances actuelles </Text>
@@ -101,7 +91,7 @@ const Home = ({navigation}) => {
             data={Array(nb)}
             renderItem={({ item, index }) => (
               <View style={styles.square}>
-              <TouchableOpacity style={styles.imageTouchable} onPress={() => navigation.navigate('Unity')}>
+              <TouchableOpacity style={styles.imageTouchable} onPress={() => alert('Image ' + (index + 1) + ' pressed!')}>
                 <View style={styles.imageContainer}>
                   <Image source={imagesPop[index]} style={styles.image} />
                   </View>
@@ -120,80 +110,10 @@ const Home = ({navigation}) => {
       <StatusBar style="auto"/>
     </ScrollView>
     
-  </View>
-  <View style={styles.navigationBarContainer}>
-    <NavigationBar/>
-</View>
-</View>
-);
-};
-
-export default Home;
-//<Image source={{uri: eval(`image${index + 1}`)}} style={styles.image} />
-/*
-const Home = () => {
-  const [nb, setNb] = useState(5);
-
-
-const whiteSquare = () => <View style={styles.square} />
-const ItemSeparator = () => <View style={styles.separator} />;
-const imageBackground = require("./testFondApp.jpg");
-const imageFilmZetT = require("./Affiche-Film-ZetTASSE.jpg");
-const imageLogo = require("./Mirage_Font_logo.png");
-
-return (
-  
-  <View style={styles.container}>
-    <ImageBackground source={imageBackground} style={styles.imageFond}>
-    <View style={styles.scrollContainer}>
-    <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
-    <View style={styles.welcomeContainer}>
-    <ImageBackground source={imageLogo} style={styles.imageWelcome} />
     </View>
-
-    <View style={styles.bigSquare}>
-      <ImageBackground source={imageFilmZetT} style={styles.imagePresentoir} />
+    <View style={styles.navigationBarContainer}>
+      <NavigationBar userId = {userId}/>
     </View>
-
-    <View style={styles.list}>
-      <Text style={styles.new}> Ajouts récents </Text>
-<SafeAreaView>
-    <FlatList
-      data={Array(nb)}
-      renderItem={() => whiteSquare()}
-      keyExtractor={(item, index) => index.toString()}
-      horizontal={true}
-      ItemSeparatorComponent={ItemSeparator}
-      showsHorizontalScrollIndicator={false}
-    />
-    </SafeAreaView>
-    </View>
-
-    <View style={styles.list}>
-      <Text style={styles.new}> Tendances </Text>
-<SafeAreaView>
-    <FlatList
-      data={Array(nb)}
-      renderItem={() => whiteSquare()}
-      keyExtractor={(item, index) => index.toString()}
-      horizontal={true}
-      ItemSeparatorComponent={ItemSeparator}
-      showsHorizontalScrollIndicator={false}
-    />
-    </SafeAreaView>
-    </View>
-
-
-
-    <StatusBar style="auto"/>
-   
-    </ScrollView>
-    </View>
- 
-  <View style={styles.navigationBarContainer}>
-      <NavigationBar/>
-    </View>
-    </ImageBackground>
   </View>
  
 
@@ -201,7 +121,7 @@ return (
 };
 
 export default Home;
-*/
+
 
 const styles = StyleSheet.create({
 
@@ -303,5 +223,3 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-
-

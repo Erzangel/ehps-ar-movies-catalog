@@ -22,8 +22,6 @@ The AR Movie Catalog is meant to provide a platform for both consumers and creat
 5. Using one of the two terminals described above, navigate to the project folder: `cd {path where you cloned this project}`;
 6. Install yarn with `npm i --global yarn`, then run `yarn install`. (npm not supported by react-native-orientation-lock package)
 
-
-
 ### Run the project
 
 1. Open an Android Emulator with Android Studio (alternatively, use a physical device):

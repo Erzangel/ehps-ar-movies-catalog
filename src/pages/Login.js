@@ -4,10 +4,16 @@ import { ImageBackground, StatusBar } from "react-native";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
 import { useFocusEffect } from '@react-navigation/native';
+import axios from 'axios';
+
+const baseUrl = "http://90.91.27.127:25565";
 
 const LoginScreen = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [userId, setUserId] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasError, setErrorFlag] = useState(false);
 
   const imageLogo = require("./Mirage_Font_logo.png");
 
@@ -19,7 +25,6 @@ const LoginScreen = (props) => {
     const password = props.route.params?.password;
     if (email) setEmail(email);
     if (password) setPassword(password);
-    
   }, [props.route.params]);
 
   useFocusEffect(
@@ -29,11 +34,63 @@ const LoginScreen = (props) => {
   );
 
   
-  const handleLogin = () => {
-    props.navigation.navigate('Home');
-    setEmail("");
-    setPassword("");
+  const handleLogin = async () => {
+    try {
+      const url = `${baseUrl}/userbyemail/${email}`
+      const response = await axios.get(url);
+      if (response.status === 200 && email!== "") {
+        setUserId(response.data.id);
+       try {
+        const url2 = `${baseUrl}/userAuth/${userId}`
+        const response2 = await axios.put(url2, {"password": password});
+        if (response2.status === 200) {
+          props.navigation.navigate('Home',{userId : userId});
+          setEmail("");
+          setPassword("");
+        } else {
+          console.log("Response Statut", response2.status);
+          throw new Error("Mot de passe invalide");
+         
+        }
+      } catch (error) {
+        console.log("Response Statut", response2.status);
+        alert("Mot de passe invalide");
+      }
+
+
+      } else {
+        console.log(response.status);
+        throw new Error("email invalide");
+       
+      }
+    } catch (error) {
+      console.log(response.status);
+      alert("email invalide");
+    }
+    /*try { 
+      console.log("aaaaa");
+      setIsLoading(true);
+      const response = await axios.get(url, { cancelToken: source.token });
+      if (response.status === 200) {
+        setUser(response.data.data);
+        console.log("good");
+        setIsLoading(false);
+        return;
+      } else {
+        console.log("erreur");
+        throw new Error("Failed to fetch users");
+      }
+    } catch (error) {
+      if(axios.isCancel(error)){
+        console.log('Data fetching cancelled');
+      }else{
+        setErrorFlag(true);
+        setIsLoading(false);
+      }
+    }
+*/
   }
+
   return (
     <View style={styles.container}>
       <View style={styles.welcomeContainer}>
