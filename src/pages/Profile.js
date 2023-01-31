@@ -9,7 +9,8 @@ import axios from 'axios';
 const baseUrl = "http://90.91.27.127:25565";
 
 const Profile = (props) => {
-  const [image, setImage] = useState("https://via.placeholder.com/150");
+  const [image, setImage] = useState("https://cdn.discordapp.com/attachments/514102308460691456/1070114668149997648/pdp.png");
+  
   const [user, setUser] = useState(props.route.params?.user)
 
 
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
   paddingTop: 40,
   backgroundColor: '#0D151C',
   borderBottomWidth: 2,
-  borderColor: 'lightgrey',
+  borderColor: '#C5E4FF',
   alignItems: 'center',
   justifyContent: 'center',
   flexDirection: 'row',
@@ -67,7 +68,6 @@ const styles = StyleSheet.create({
   fontSize: 22,
   fontWeight: 'bold',
   marginRight: 'auto',
-  marginLeft: '5',
   },
   editButton: {
   backgroundColor: 'white',
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   width: '100%',
   padding: 20,
   marginTop: 20,
-  backgroundColor: 'white',
+  backgroundColor: '#dddddd',
   alignItems: 'flex-start',
   },
   infoLabel: {
