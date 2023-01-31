@@ -44,7 +44,7 @@ const LoginScreen = (props) => {
       if (response.status === 200 && email!== "") {
         setUserId(response.data.id);
        try {
-        const url2 = `${baseUrl}/userAuth/${userId}`
+        const url2 = `${baseUrl}/userAuth/${response.data.id}`
         console.log("avant + url2: " + url2)
         console.log("password: " + password)
         const response2 = await axios.put(url2, {"password": password});
