@@ -50,10 +50,28 @@ const LoginScreen = (props) => {
         const response2 = await axios.put(url2, {"password": password});
         console.log("après")
         if (response2.status === 200) {
-          console.log("YO")
-          props.navigation.navigate('Home',{userId : userId});
-          setEmail("");
-          setPassword("");
+          try {
+            const url = `${baseUrl}/users/${response.data.id}`
+            const response3 = await axios.get(url);
+            if (response3.status === 200) {
+              
+              const user = {
+                id: response3.data.id,
+                email: response3.data.email,
+                username: response3.data.username
+              };
+              props.navigation.navigate('Home',{user : user});
+              setEmail("");
+              setPassword("");
+            } else {
+              console.log("Response Statut", response3.status);
+              throw new Error("Mot de passe invalide");
+             
+            }
+          } catch (error) {
+            console.log("Response Statut", response3.status);
+            alert("ERREUR 404");
+          }
         } else {
           console.log("Response Statut", response2.status);
           throw new Error("Mot de passe invalide");

@@ -8,10 +8,10 @@ import Orientation from 'react-native-orientation-locker';
 function NavigationBar (props) {
 const navigation = useNavigation(); 
 const route = useRoute(); 
-const [userId, setUserId] = useState(props.userId);
+const [user, setUser] = useState(props.user);
 
 useEffect(() => {
-  setUserId(props.userId);
+  setUser(props.user);
   
 }, [props]);
 
@@ -22,7 +22,7 @@ useEffect(() => {
             style={styles.navigationBarTab}
             onPress={() => {
               Orientation.lockToPortrait();
-              navigation.navigate('Home',{userId : userId})
+              navigation.navigate('Home',{user : user})
             }}
 
             >
@@ -32,7 +32,7 @@ useEffect(() => {
         </TouchableOpacity>
         <TouchableOpacity 
             style={styles.navigationBarTab}
-            onPress={() => navigation.navigate('Profile',{userId : userId})}
+            onPress={() => navigation.navigate('Profile',{user : user})}
             >
           <Text style={route.name === 'Profile' ? styles.activeTabText : styles.inactiveTabText}>
             Profile
