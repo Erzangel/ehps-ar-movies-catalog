@@ -53,15 +53,17 @@ const styles = StyleSheet.create({
     fontSize: 15,  
     fontWeight: 'bold',
     
-    color: '#609BFA',
-    textShadowColor: 'rgba(255, 255, 255, 0.2)',
-    textShadowOffset: {width: -1, height: 1},
-    textShadowRadius: 10,
+    color: '#1A64A6',
+    
   },
   inactiveTabText: {
     fontSize: 15,  
     fontWeight: 'bold',
-    color: '#1A64A6',
+    
+    color: '#609BFA',
+    textShadowColor: 'rgba(255, 255, 255, 0.2)',
+    textShadowOffset: {width: -1, height: 1},
+    textShadowRadius: 10,
   },
 });
 

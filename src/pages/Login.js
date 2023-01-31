@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
+import { ImageBackground, StatusBar } from "react-native";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
 import { useFocusEffect } from '@react-navigation/native';
@@ -7,6 +8,8 @@ import { useFocusEffect } from '@react-navigation/native';
 const LoginScreen = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const imageLogo = require("./Mirage_Font_logo.png");
 
   const [underline, setUnderline] = useState(false);
  // console.log(props.getParam?.email)
@@ -33,7 +36,10 @@ const LoginScreen = (props) => {
   }
   return (
     <View style={styles.container}>
-    <Text style={styles.title}>S'identifier</Text>
+      <View style={styles.welcomeContainer}>
+      <ImageBackground source={imageLogo} style={styles.imageWelcome} />
+      </View>
+    <Text style={styles.title}>Connexion</Text>
       <TextInput
         style={styles.input}
         onChangeText={text => setEmail(text)}
@@ -61,7 +67,7 @@ const LoginScreen = (props) => {
   }}
   underlayColor="transparent"
 >
-<Text style={underline ? styles.underlineText : styles.normalText}>inscrivez-vous.</Text>
+<Text style={underline ? styles.underlineText : styles.normalText}>Inscrivez-vous.</Text>
 </TouchableOpacity>
 </View>
 </View>
@@ -76,28 +82,48 @@ const styles = StyleSheet.create({
   flex: 1,
   alignItems: 'center',
   justifyContent: 'center',
+  backgroundColor: '#C5DDF1',
+  },
+  imageWelcome: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    resizeMode: 'cover',
+  },
+  welcomeContainer: {
+    textAlign: 'center',
+    alignSelf: 'center',
+    height: 100,
+    width: 200,
   },
   text: {
   fontSize: 20,
   marginBottom: 20,
   },
+  title: {
+    color: '#4094DC',
+    fontWeight: 'bold',
+  },
   input: {
   height: 40,
   width: '90%',
   borderColor: 'gray',
-  borderWidth: 1,
+  borderBottomWidth: 1,
   marginBottom: 20,
   padding: 10,
+  fontWeight: 'bold',
   },
   button: {
   height: 40,
   width: '90%',
-  backgroundColor: '#007aff',
+  backgroundColor: '#0069C6',
   alignItems: 'center',
   justifyContent: 'center',
+  borderRadius: 8,
   },
   buttonText: {
-  color: 'white',
+  fontWeight: 'bold',
+  color: '#C5E4FF',
   },
   registerContainer: {
   flexDirection: 'row',
@@ -106,7 +132,8 @@ const styles = StyleSheet.create({
   marginTop: 10,
   },
   registerText: {
-  color: 'black',
+  color: '#4094DC',
+  fontWeight: 'bold',
   },
   registerLink: {
   marginLeft: 5,
@@ -116,7 +143,8 @@ const styles = StyleSheet.create({
   textDecorationLine: 'underline'
   },
   normalText: {
-  color: 'black'
+    color: '#1A64A6',
+    fontWeight: 'bold',
   },
   });
 

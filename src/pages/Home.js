@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    borderColor: 'lightgrey',
+    borderColor: '#324F69',
     borderWidth: 3,
     borderRadius: 5,
   },
@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
     width: 350,
     height: 400,
     marginBottom: 30,
-    backgroundColor: 'grey',
+    backgroundColor: '#324F69',
     borderRadius:10,
     padding: 1,
     //Shadowbox
